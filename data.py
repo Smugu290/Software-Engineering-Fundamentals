@@ -8,7 +8,6 @@ model.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
 def get_db():
     db = SessionLocal()
     try:
@@ -16,34 +15,12 @@ def get_db():
     finally:
         db.close()
 
-
-@app.get("/")
-def read_root():
-    return {"message": "FastAPI app is running"}
-
-
-@app.on_event("startup")
-def seed_sample_data():
-    db = SessionLocal()
-    try:
-        if db.query(model.List).count() == 0:
-            sample_item = model.List(
-                name="Sample Student",
-                age=20,
-                course="FastAPI"
-            )
-            db.add(sample_item)
-            db.commit()
-    finally:
-        db.close()
-
-
-@app.post("/lists", response_model=schema.List)
+@app.post("/lists")
 def create_list(list_item: schema.ListCreate, db: Session = Depends(get_db)):
     new_list = model.List(
         name=list_item.name,
         age=list_item.age,
-        course=list_item.course,
+        course=list_item.course
     )
 
     db.add(new_list)
@@ -52,7 +29,6 @@ def create_list(list_item: schema.ListCreate, db: Session = Depends(get_db)):
 
     return new_list
 
-
-@app.get("/lists", response_model=list[schema.List])
+@app.get("/lists")
 def get_lists(db: Session = Depends(get_db)):
     return db.query(model.List).all()
