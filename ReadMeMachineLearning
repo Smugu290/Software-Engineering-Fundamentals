@@ -1,0 +1,209 @@
+# Wholesale Trade Survey Data Analysis using Python
+
+## Project Overview
+
+This project demonstrates the fundamental steps of data analysis and machine learning using Python in Jupyter Notebook. The dataset used is the **Wholesale Trade Survey (March 2026 Quarter)** in CSV format.
+
+The project covers loading a CSV file, exploring the dataset, cleaning the data, training a Simple Linear Regression model, and making predictions.
+
+---
+
+## Objectives
+
+* Load a CSV dataset into Jupyter Notebook.
+* Display the first and last six rows of the dataset.
+* View the dataset's column names.
+* Perform basic data cleaning.
+* Train a Simple Linear Regression model.
+* Generate predictions using the trained model.
+
+---
+
+## Technologies Used
+
+* Python 3
+* Jupyter Notebook
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+
+---
+
+## Libraries Used
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+```
+
+---
+
+## Dataset
+
+**File:** `wholesale-trade-survey-march-2026-quarter.csv`
+
+The dataset contains wholesale trade survey information and is stored in CSV format.
+
+---
+
+## Project Workflow
+
+### 1. Loading the Dataset
+
+The dataset is imported into Jupyter Notebook using the Pandas library.
+
+```python
+df = pd.read_csv("wholesale-trade-survey-march-2026-quarter.csv")
+```
+
+---
+
+### 2. Exploring the Dataset
+
+The following operations are performed:
+
+* Display the first six rows
+
+```python
+df.head(6)
+```
+
+* Display the last six rows
+
+```python
+df.tail(6)
+```
+
+* Display column names
+
+```python
+df.columns
+```
+
+---
+
+### 3. Data Cleaning
+
+The dataset is cleaned before training the machine learning model.
+
+#### Missing Values
+
+Missing values are identified using:
+
+```python
+df.isnull().sum()
+```
+
+Rows containing missing values are removed if necessary.
+
+---
+
+#### Duplicate Rows
+
+Duplicate records are detected using:
+
+```python
+df.duplicated().sum()
+```
+
+Duplicate rows are removed to improve data quality.
+
+---
+
+#### Encoding
+
+Categorical (text) columns are converted into numerical values using label encoding so they can be used by machine learning algorithms.
+
+---
+
+### 4. Model Training
+
+A Simple Linear Regression model is created using Scikit-learn.
+
+The dataset is divided into:
+
+* 80% Training Data
+* 20% Testing Data
+
+using:
+
+```python
+train_test_split()
+```
+
+The model is then trained using:
+
+```python
+model.fit(X_train, y_train)
+```
+
+---
+
+### 5. Prediction
+
+After training, the model predicts output values for the testing dataset.
+
+```python
+predictions = model.predict(X_test)
+```
+
+---
+
+## Output
+
+The notebook displays:
+
+* First six rows of the dataset
+* Last six rows of the dataset
+* Column names
+* Missing value report
+* Duplicate row count
+* Encoded categorical values
+* Trained Simple Linear Regression model
+* Predicted values
+
+---
+
+## Machine Learning Algorithm
+
+### Simple Linear Regression
+
+Simple Linear Regression is a supervised machine learning algorithm used to predict a continuous numerical value based on a single independent variable.
+
+It attempts to find the best-fit straight line represented by:
+
+**y = mx + c**
+
+where:
+
+* **y** = Predicted value
+* **m** = Slope (coefficient)
+* **x** = Independent variable
+* **c** = Intercept
+
+---
+
+## Learning Outcomes
+
+After completing this project, the following concepts are understood:
+
+* Loading CSV files using Pandas
+* Exploring datasets
+* Data cleaning techniques
+* Handling missing values
+* Removing duplicate records
+* Encoding categorical variables
+* Splitting datasets into training and testing sets
+* Training a Simple Linear Regression model
+* Predicting values using machine learning
+
+---
+
+## Conclusion
+
+This project provides a beginner-friendly introduction to data preprocessing and machine learning using Python. It demonstrates the complete workflow from importing a CSV dataset to cleaning the data, training a Simple Linear Regression model, and generating predictions. These steps form the foundation for more advanced data analytics and machine learning projects.
